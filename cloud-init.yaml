@@ -1,0 +1,41 @@
+#cloud-config
+package_update: true
+package_upgrade: true
+
+packages:
+  - nginx
+
+users:
+  - name: admin
+    groups: sudo
+    ssh_authorized_keys:
+      - ${ssh_public_key}
+
+runcmd:
+  - mkdir -p /var/www/my-frontend
+  - cp -r /tmp/frontend-files/* /var/www/my-frontend/
+  - chown -R www-data:www-data /var/www/my-frontend
+
+write_files:
+  - path: /etc/nginx/sites-available/my-frontend
+    content: |
+      server {
+          listen 80;
+          server_name ${domain} www.${domain};
+          root /var/www/my-frontend;
+          index index.html;
+          location / {
+              try_files $uri $uri/ =404;
+          }
+      }
+  - path: /tmp/frontend-files/index.html
+    content: |
+      <!DOCTYPE html>
+      <html>
+      <head>
+          <title>Hello Terraform!</title>
+      </head>
+      <body>
+          <h1>Deployato con Terraform su Hetzner! 🚀</h1>
+      </body>
+      </html>
