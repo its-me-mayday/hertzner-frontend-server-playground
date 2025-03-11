@@ -16,7 +16,8 @@ variable "cloudflare_zone_id" {
   sensitive   = true
 }
 
-variable "domain" {
-  type    = string
-  default = "example.com"
+variable "cloudflare_domain_name" {
+  description = "Cloudflare domain name"
+  type        = string
+  sensitive   = false
 }

@@ -1,6 +1,6 @@
 resource "cloudflare_record" "frontend" {
   zone_id = var.cloudflare_zone_id
-  name    = "frontend.lucamaggio.xyz"
+  name    = "frontend.${var.cloudflare_domain_name}"
   type    = "A"
   ttl     = 3600
   proxied = false
@@ -9,7 +9,7 @@ resource "cloudflare_record" "frontend" {
 
 resource "cloudflare_record" "isnot-frontend" {
   zone_id = var.cloudflare_zone_id
-  name    = "isnot-frontend.lucamaggio.xyz"
+  name    = "isnot-frontend.${var.cloudflare_domain_name}"
   type    = "A"
   ttl     = 3600
   proxied = false

@@ -8,8 +8,4 @@ resource "hcloud_server" "frontend-server" {
     ipv4_enabled = true
     ipv6_enabled = true
   }
-  user_data = templatefile("cloud-init.yaml", {
-    domain         = var.domain,
-    ssh_public_key = file("~/.ssh/hertzner.pub")
-  })
 }
