@@ -8,4 +8,6 @@ resource "hcloud_server" "frontend_server" {
     ipv4_enabled = true
     ipv6_enabled = true
   }
+
+  depends_on = [hcloud_ssh_key.ssh_public_key]
 }
