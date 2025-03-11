@@ -4,7 +4,19 @@ variable "hcloud_token" {
   sensitive   = true
 }
 
-variable "domain" {
+variable "cloudflare_api_token" {
+  description = "Cloudflare API Token"
   type        = string
-  default     = "example.com"
+  sensitive   = true
+}
+
+variable "cloudflare_zone_id" {
+  description = "Cloudflare ZoneID"
+  type        = string
+  sensitive   = true
+}
+
+variable "domain" {
+  type    = string
+  default = "example.com"
 }
