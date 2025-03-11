@@ -50,12 +50,6 @@ variable "cloudflare_domain_name" {
   sensitive   = false
 }
 
-variable "ssh_public_key_path" {
-  description = "SSH public key path"
-  type        = string
-  sensitive   = true
-}
-
 variable "ssh_key_name" {
   description = "SSH key name"
   type        = string

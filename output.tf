@@ -9,3 +9,7 @@ output "cloudflare_record_frontend" {
 output "cloudflare_record_isnot_frontend" {
   value = cloudflare_record.isnot_frontend.name
 }
+
+output "ssh_public_key" {
+  value = hcloud_ssh_key.ssh_public_key.public_key
+}
