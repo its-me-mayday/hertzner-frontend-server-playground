@@ -12,3 +12,13 @@
       apt:
         name: nginx
         state: present
+    - name: Create website directories
+      file:
+        path: "{{ item }}"
+        state: directory
+        owner: www-data
+        group: www-data
+        mode: '0755'
+      loop:
+        - /var/www/frontend.lucamaggio.xyz
+        - /var/www/default
