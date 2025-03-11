@@ -9,10 +9,6 @@
   hosts: frontend
   become: true
   tasks:
-    - name: Print the domain name
-      ansible.builtin.debug:
-        msg: "The domain name is {{ domain_name | default('example.com') }}"
-
     - name: Update and upgrade packages
       apt:
         update_cache: true
@@ -42,7 +38,7 @@
         group: root
         mode: '0644'
       loop:
-        - src: "./conf/frontend.nginx.conf"
+        - src: "./conf/{{ frontend_nginx_conf_filename }}"
           dest: "/etc/nginx/sites-available"
         - src: "./conf/default.nginx.conf"
           dest: "/etc/nginx/sites-available"
@@ -50,7 +46,7 @@
 
     - name: Copy index page
       copy:
-        src: "./conf/index.html"
+        src: "./conf/{{ index_filename }}"
         dest: "/var/www/{{ domain_name | default('example.com') }}"
         owner: www-data
         group: www-data
@@ -70,5 +66,5 @@
         state: link
       loop:
         - default.nginx.conf
-        - frontend.nginx.conf
+        - "{{ frontend_nginx_conf_filename }}"
       notify: "reload nginx"

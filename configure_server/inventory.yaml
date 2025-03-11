@@ -1,6 +1,6 @@
 ---
 frontend:
   hosts:
-    frontend.lucamaggio.xyz:
+    "{{ domain_name }}":
       ansible_user: root
-      ansible_ssh_private_key_file: "../.ssh/hetzner_id_rsa"
+      ansible_ssh_private_key_file: "{{ ssh_key_path }}"
