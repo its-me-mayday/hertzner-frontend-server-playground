@@ -15,6 +15,9 @@ runcmd:
   - mkdir -p /var/www/my-frontend
   - cp -r /tmp/frontend-files/* /var/www/my-frontend/
   - chown -R www-data:www-data /var/www/my-frontend
+  - ln -sf /etc/nginx/sites-available/my-frontend /etc/nginx/sites-enabled/
+  - rm -f /etc/nginx/sites-enabled/default
+  - systemctl reload nginx
 
 write_files:
   - path: /etc/nginx/sites-available/my-frontend
@@ -36,6 +39,6 @@ write_files:
           <title>Hello Terraform!</title>
       </head>
       <body>
-          <h1>Deployato con Terraform su Hetzner! 🚀</h1>
+          <h1>Deployed using Terraform on Hetzner!</h1>
       </body>
       </html>

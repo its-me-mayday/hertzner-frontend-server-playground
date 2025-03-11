@@ -12,15 +12,4 @@ resource "hcloud_server" "frontend-server" {
     domain          = var.domain,
     ssh_public_key  = file("~/.ssh/hertzner.pub")
   })
-
-  provisioner "file" {
-    source      = "frontend-files/"
-    destination = "/tmp/frontend-files"
-    connection {
-      type        = "ssh"
-      user        = "root"
-      private_key = file("~/.ssh/hertzner")
-      host        = self.ipv4_address
-    }
-  }
 }
