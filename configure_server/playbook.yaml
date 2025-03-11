@@ -12,6 +12,7 @@
       apt:
         name: nginx
         state: present
+
     - name: Create website directories
       file:
         path: "{{ item }}"
@@ -22,3 +23,16 @@
       loop:
         - /var/www/frontend.lucamaggio.xyz
         - /var/www/default
+
+    - name: Create Nginx configuration files
+      copy:
+        src: "{{ item.src }}"
+        dest: "{{ item.dest }}"
+        owner: root
+        group: root
+        mode: '0644'
+      loop:
+        - src: "./conf/frontend.nginx.conf"
+          dest: "/etc/nginx/sites-available"
+        - src: "./conf/default.nginx.conf"
+          dest: "/etc/nginx/sites-available"
