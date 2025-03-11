@@ -51,12 +51,17 @@
         group: www-data
         mode: '0755'
 
+    - name: Delete default nginx conf
+      file:
+        dest: "/etc/nginx/sites-enabled/default"
+        state: absent
+
     - name: Enable Nginx site configurations
       file:
         src: "/etc/nginx/sites-available/{{ item }}"
         dest: "/etc/nginx/sites-enabled/{{ item }}"
         state: link
       loop:
-        - default
+        - default.nginx.conf
         - frontend.nginx.conf
       notify: "reload nginx"
