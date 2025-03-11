@@ -4,6 +4,34 @@ variable "hcloud_token" {
   sensitive   = true
 }
 
+variable "hcloud_server_name" {
+  description = "Hetzner Cloud Server Name"
+  type        = string
+  sensitive   = false
+  default     = "frontend-server"
+}
+
+variable "hcloud_server_image_name" {
+  description = "Hetzner Cloud Server Image Name"
+  type        = string
+  sensitive   = false
+  default     = "ubuntu-22.04"
+}
+
+variable "hcloud_server_type_name" {
+  description = "Hetzner Cloud Server Type Name"
+  type        = string
+  sensitive   = false
+  default     = "cax11"
+}
+
+variable "hcloud_server_location_name" {
+  description = "Hetzner Cloud Server location Name"
+  type        = string
+  sensitive   = false
+  default     = "fsn1"
+}
+
 variable "cloudflare_api_token" {
   description = "Cloudflare API Token"
   type        = string

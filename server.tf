@@ -1,5 +1,5 @@
 resource "hcloud_server" "frontend_server" {
-  name        = "frontend-server"
+  name        = var.hcloud_server_name
   image       = "ubuntu-22.04"
   server_type = "cax11"
   location    = "fsn1"
