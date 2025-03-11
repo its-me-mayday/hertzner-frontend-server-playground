@@ -10,9 +10,9 @@
   become: true
   tasks:
     - name: Update and upgrade packages
-      ansible.builtin.package:
-        name: "*"
-        state: latest
+      apt:
+        update_cache: true
+        upgrade: true
 
     - name: Install nginx
       apt:
