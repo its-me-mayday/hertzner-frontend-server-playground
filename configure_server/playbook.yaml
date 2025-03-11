@@ -1,5 +1,11 @@
 ---
 - name: Configure frontend server
+  handlers:
+    - name: Restart nginx
+      listen: "reload nginx"
+      ansible.builtin.service:
+        name: nginx
+        state: restarted
   hosts: frontend
   become: true
   tasks:
@@ -36,3 +42,21 @@
           dest: "/etc/nginx/sites-available"
         - src: "./conf/default.nginx.conf"
           dest: "/etc/nginx/sites-available"
+
+    - name: Copy index page
+      copy:
+        src: "./conf/index.html"
+        dest: "/var/www/frontend.lucamaggio.xyz"
+        owner: www-data
+        group: www-data
+        mode: '0755'
+
+    - name: Enable Nginx site configurations
+      file:
+        src: "/etc/nginx/sites-available/{{ item }}"
+        dest: "/etc/nginx/sites-enabled/{{ item }}"
+        state: link
+      loop:
+        - default
+        - frontend.nginx.conf
+      notify: "reload nginx"
