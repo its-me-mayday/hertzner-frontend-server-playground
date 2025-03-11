@@ -42,6 +42,7 @@
           dest: "/etc/nginx/sites-available"
         - src: "./conf/default.nginx.conf"
           dest: "/etc/nginx/sites-available"
+      notify: "reload nginx"
 
     - name: Copy index page
       copy:
@@ -50,11 +51,13 @@
         owner: www-data
         group: www-data
         mode: '0755'
+      notify: "reload nginx"
 
     - name: Delete default nginx conf
       file:
         dest: "/etc/nginx/sites-enabled/default"
         state: absent
+      notify: "reload nginx"
 
     - name: Enable Nginx site configurations
       file:
