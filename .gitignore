@@ -41,3 +41,4 @@ terraform.rc
 .ssh/
 
 configure_server/group_vars/**.yaml
+configure_server/group_vars/**.yml
