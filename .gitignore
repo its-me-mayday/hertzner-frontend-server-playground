@@ -39,3 +39,5 @@ terraform.rc
 
 # Ignore .ssh
 .ssh/
+
+configure_server/group_vars/**.yaml
