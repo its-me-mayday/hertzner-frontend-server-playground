@@ -4,14 +4,18 @@ resource "cloudflare_record" "frontend" {
   type    = "A"
   ttl     = 3600
   proxied = false
-  content = "88.99.32.249"
+  content = hcloud_server.frontend_server.ipv4_address
+
+  depends_on = [hcloud_server.frontend_server]
 }
 
-resource "cloudflare_record" "isnot-frontend" {
+resource "cloudflare_record" "isnot_frontend" {
   zone_id = var.cloudflare_zone_id
   name    = "isnot-frontend.${var.cloudflare_domain_name}"
   type    = "A"
   ttl     = 3600
   proxied = false
-  content = "88.99.32.249"
+  content = hcloud_server.frontend_server.ipv4_address
+
+  depends_on = [hcloud_server.frontend_server]
 }

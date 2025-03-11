@@ -1,4 +1,4 @@
-resource "hcloud_server" "frontend-server" {
+resource "hcloud_server" "frontend_server" {
   name        = "frontend-server"
   image       = "ubuntu-22.04"
   server_type = "cax11"
