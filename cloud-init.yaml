@@ -12,25 +12,36 @@ users:
       - ${ssh_public_key}
 
 runcmd:
-  - mkdir -p /var/www/my-frontend
-  - cp -r /tmp/frontend-files/* /var/www/my-frontend/
-  - chown -R www-data:www-data /var/www/my-frontend
-  - ln -sf /etc/nginx/sites-available/my-frontend /etc/nginx/sites-enabled/
-  - rm -f /etc/nginx/sites-enabled/default
+  - mkdir -p /var/www/frontend.lucamaggio.xyz
+  - cp -r /tmp/frontend-files/* /var/www/frontend.lucamaggio.xyz
+  - chown -R www-data:www-data /var/www/frontend.lucamaggio.xyz
+  - ln -sf /etc/nginx/sites-available/frontend.lucamaggio.xyz /etc/nginx/sites-enabled/
+  - cp -r /tmp/frontend-files/* /var/www/default
+  - chown -R www-data:www-data /var/www/default
+  - ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/
   - systemctl reload nginx
 
 write_files:
-  - path: /etc/nginx/sites-available/my-frontend
+  - path: /etc/nginx/sites-available/frontend.lucamaggio.xyz
     content: |
       server {
-          listen 80;
-          server_name ${domain} www.${domain};
-          root /var/www/my-frontend;
+          listen 80; 
+          server_name frontend.lucamaggio.xyz;
+          root /var/www/frontend.lucamaggio.xyz;
           index index.html;
           location / {
               try_files $uri $uri/ =404;
           }
       }
+
+  - path: /etc/nginx/sites-available/default
+    content: |
+      server {
+        listen 80 default_server;
+        server_name _;
+        return 444;
+      }
+
   - path: /tmp/frontend-files/index.html
     content: |
       <!DOCTYPE html>
