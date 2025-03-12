@@ -1,0 +1,2 @@
+---
+ssh_key_path: "../iac/.ssh/hetzner_id_rsa"

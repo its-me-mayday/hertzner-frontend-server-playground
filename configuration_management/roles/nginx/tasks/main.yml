@@ -1,0 +1,48 @@
+---
+- name: Create website directories
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: www-data
+    group: www-data
+    mode: '0755'
+  loop:
+    - "/var/www/{{ domain_name }}"
+    - /var/www/default
+
+- name: Copy Nginx configuration files
+  ansible.builtin.template:
+    src: "{{ item }}"
+    dest: "/etc/nginx/sites-available/{{ item }}"
+    owner: root
+    group: root
+    mode: '0644'
+  loop:
+    - "default.nginx.j2"
+    - "frontend.http.nginx.j2"
+  notify: Reload Nginx
+
+- name: Delete default nginx configuration
+  ansible.builtin.file:
+    dest: /etc/nginx/sites-enabled/default
+    state: absent
+  notify: Reload Nginx
+
+- name: Enable Nginx site configurations
+  ansible.builtin.file:
+    src: "/etc/nginx/sites-available/{{ item }}"
+    dest: "/etc/nginx/sites-enabled/{{ item }}"
+    state: link
+  loop:
+    - "default.nginx.j2"
+    - "frontend.http.nginx.j2"
+  notify: Reload Nginx
+
+- name: Copy index page
+  ansible.builtin.copy:
+    src: index.html
+    dest: "/var/www/{{ domain_name }}/index.html"
+    owner: www-data
+    group: www-data
+    mode: '0755'
+  notify: Reload Nginx

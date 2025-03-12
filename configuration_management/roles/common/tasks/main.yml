@@ -1,0 +1,30 @@
+---
+- name: Update and upgrade packages (Debian family)
+  apt:
+    update_cache: true
+    upgrade: true
+  when: ansible_os_family == "Debian"
+
+- name: Install nginx on Debian/Ubuntu
+  apt:
+    name: nginx
+    state: present
+  when: ansible_os_family == "Debian"
+
+- name: Update and upgrade packages (RHEL/CentOS family)
+  ansible.builtin.yum:
+    name: "*"
+    state: latest
+  when: ansible_os_family == "RedHat"
+
+- name: Install epel-release on RedHat
+  ansible.builtin.yum:
+    name: epel-release
+    state: present
+  when: ansible_os_family == "RedHat"
+
+- name: Install nginx on RedHat
+  ansible.builtin.yum:
+    name: nginx
+    state: present
+  when: ansible_os_family == "RedHat"
