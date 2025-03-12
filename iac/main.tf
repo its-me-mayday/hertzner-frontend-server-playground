@@ -7,3 +7,5 @@ provider "cloudflare" {
 }
 
 provider "tls" {}
+
+provider "null" {}
