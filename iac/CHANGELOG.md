@@ -1,0 +1,41 @@
+# Changelog
+## Version 0.1.0-alpha
+- 5557cf7 (2025-03-12) docs(.tool-versions): setup ansible version
+- 19efb45 (2025-03-12) docs(README): delete useless procedure
+- dffd239 (2025-03-12) chore(ansible_provisioner): setup opentofu-ansible integration
+- e5d1a26 (2025-03-12) chore(group_vars): give a param to domain_name
+- bc635fc (2025-03-12) style(main, providers): switch files
+- 4e18ddf (2025-03-12) docs(README): setup file
+- b89386d (2025-03-12) style: refactor all ansible files
+- b76fa60 (2025-03-12) style(iac): move all opentofu files in iac folder
+- 78c7b45 (2025-03-11) style: change format file from yaml to yml
+- 4f89600 (2025-03-11) chore(configure-server): parametrize all
+- 005c7d7 (2025-03-11) chore(configure-server): setup domain_name var
+- ede1888 (2025-03-11) chore(configure-server): setup domain_name var
+- 7884cd8 (2025-03-11) chore(playbook): use apt to upgrade packages
+- b523de4 (2025-03-11) chore(playbook): use ansible.builtin.package instead of apt to manage installation packages universally
+- 53242e8 (2025-03-11) fix(playbook): setup notify to each job
+- 63029db (2025-03-11) fix(playbook, conf/frontend.nginx.conf): fix default path
+- 474308c (2025-03-11) chore(configure-server): add link and index html page
+- b776ff3 (2025-03-11) chore(configure-server): create configure nginx files
+- 9f33d14 (2025-03-11) chore(configure-server): create website folders
+- f59c9ec (2025-03-11) chore(configure-server): setup ansible script
+- 97a61aa (2025-03-11) chore(main, output, providers, ssh_keys, variables): generate ssh key dinamically
+- 93a752d (2025-03-11) chore(server): setup depend creation after hcloud_ssh
+- d76e2fd (2025-03-11) style(providers, main): split files
+- 2893429 (2025-03-11) chore(server): apply variables
+- 8e0b619 (2025-03-11) chore(server, variables): setup server configuration in vars
+- 6a2b776 (2025-03-11) style(records): rename dns in records
+- b0a3ea5 (2025-03-11) chore(dns, output, server): setup not harcoded ip in dns resource and setup underscore on each resources
+- e42748b (2025-03-11) chore(.pre-commit-config): setup yamllint and tofutrivy and lint cloud_init.yaml file
+- 0a8feb8 (2025-03-11) chore(Makefile): add file
+- d559f8b (2025-03-11) chore(server, ssh_keys, variables): rename ssh_keys.tf file, setup ssh_public_key_path and ssh_key_name variables
+- 9d60093 (2025-03-11) chore(dns, server, variables): delete user-data from server resource cause ansible scope nginx configuration and setup new cloudflare_domain_name variable
+- a8bb4f3 (2025-03-11) chore: respond only a single dns
+- 09e0efd (2025-03-11) chore(main, variables, dns): setup cloudflare registry and dns
+- d587fc6 (2025-03-11) chore(frontend-files): delete useless files
+- 9f7822b (2025-03-11) chore: setup html in cloud-init file
+- ac6bd68 (2025-03-11) chore: setup output and frontend-files
+- f6a0c0f (2025-03-11) fix(server.tf): setup correct server
+- 7de6543 (2025-03-11) feat(*): init project
+- 2e18ee7 (2025-03-11) Initial commit
