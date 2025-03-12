@@ -1,2 +1,2 @@
 ---
-domain_name: frontend.lucamaggio.xyz
+domain_name: "{{ lookup('env', 'DOMAIN_NAME') }}"
