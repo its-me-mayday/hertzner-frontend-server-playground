@@ -2,7 +2,7 @@
 
 There are two different folders:
 - `iac` (infrastructure-as-code): using `opentofu` we can build a simple server on Hetzner Cloud;
-- `configuration\_management`: using `ansible` we can setup Nginx in our server.
+- `configuration_management`: using `ansible` we can setup Nginx in our server.
 
 ## Getting Started
 You must have:
@@ -29,11 +29,5 @@ $ make plan
 $ make apply
 ```
 
-In `configuration_management`:
-
-```bash
-$ ansible-playbook -i inventory.yml playbooks/site.yml
-```
-
 ## Utility
-- delete `known\_hosts`: `ssh-keygen -f '~/.ssh/known_hosts' -R 'cloudflare_domain_name'`
+- delete `known_hosts`: `ssh-keygen -f '~/.ssh/known_hosts' -R 'cloudflare_domain_name'`
